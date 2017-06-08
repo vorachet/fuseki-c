@@ -26,10 +26,6 @@ int main(int argc, char **argv)
     char *url = argv[1];
     char *sparql = argv[2];
 
-    //printf("arg url = %s\n", url);
-    //printf("arg headerAccept = %s\n", headerAccept);
-    //printf("arg sparql = %s\n", sparql);
-
     CURL *curl;
     CURLcode res;
 
@@ -38,35 +34,21 @@ int main(int argc, char **argv)
     curl = curl_easy_init();
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, sparql);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)strlen(sparql));
 
-#ifdef SKIP_PEER_VERIFICATION
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-#endif
-
-#ifdef SKIP_HOSTNAME_VERIFICATION
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-#endif
-
-        struct curl_slist *chunk = NULL;
-
-        chunk = curl_slist_append(chunk, "Accept: application/sparql-results+json");
-        chunk = curl_slist_append(chunk, "ContentType: application/sparql-update'");
-
-        char queryParam[2000];
-        strcat (queryParam, "update=");
-        strcat (queryParam, sparql);
-        //printf("queryParam = %s\n", queryParam);
-
-        res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, queryParam);
-
+        struct curl_slist *headers = NULL;
+        headers = curl_slist_append(headers, "Accept: application/sparql-results+json");
+        headers = curl_slist_append(headers, "Content-Type: application/sparql-update");
+        res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         res = curl_easy_perform(curl);
         if(res != CURLE_OK)
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
                     curl_easy_strerror(res));
+        else printf("updated \n");
 
         curl_easy_cleanup(curl);
-        curl_slist_free_all(chunk);
+        curl_slist_free_all(headers);
     }
 
     curl_global_cleanup();

@@ -37,6 +37,7 @@ int main(int argc, char **argv)
     //printf("arg headerAccept = %s\n", headerAccept);
     //printf("arg sparql = %s\n", sparql);
 
+
     CURL *curl;
     CURLcode res;
 
@@ -45,32 +46,18 @@ int main(int argc, char **argv)
     curl = curl_easy_init();
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, sparql);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)strlen(sparql));
 
-#ifdef SKIP_PEER_VERIFICATION
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-#endif
-
-#ifdef SKIP_HOSTNAME_VERIFICATION
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-#endif
-
-        struct curl_slist *chunk = NULL;
+        struct curl_slist *headers = NULL;
 
         char httpHeaderAccept[2000];
         strcat (httpHeaderAccept, "Accept: ");
         strcat (httpHeaderAccept, headerAccept);
-        //printf("httpHeaderAccept = %s\n", httpHeaderAccept);
 
-        chunk = curl_slist_append(chunk, httpHeaderAccept);
-        chunk = curl_slist_append(chunk, "ContentType: application/sparql-query");
-
-        char queryParam[2000];
-        strcat (queryParam, "query=");
-        strcat (queryParam, sparql);
-        //printf("queryParam = %s\n", queryParam);
-
-        res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, queryParam);
+        headers = curl_slist_append(headers, httpHeaderAccept);
+        headers = curl_slist_append(headers, "Content-Type: application/sparql-query");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         res = curl_easy_perform(curl);
         if(res != CURLE_OK)
@@ -78,7 +65,7 @@ int main(int argc, char **argv)
                     curl_easy_strerror(res));
 
         curl_easy_cleanup(curl);
-        curl_slist_free_all(chunk);
+        curl_slist_free_all(headers);
     }
 
     curl_global_cleanup();
