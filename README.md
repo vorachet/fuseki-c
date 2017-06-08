@@ -34,7 +34,6 @@ libcurl (https://curl.haxx.se/libcurl/) is required
 
 ```
 $ make
-
 ```
 
 or
