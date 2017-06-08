@@ -1,5 +1,5 @@
 # fuseki-c
-Very small C client programs for Jena Fuseki
+Very small fast C client programs for Jena Fuseki
 
 ## References
 
@@ -19,17 +19,28 @@ $ docker run -d --name fuseki -p 3030:3030 -v {FusekiDataDirectoryOnHost}:/fusek
 
 ```
 
-## FusekiQuery
 
-### Compile
+## Compile
 
 libcurl (https://curl.haxx.se/libcurl/) is required
 
+
 ```
-$ gcc -Wall -o FusekiQuery  FusekiQuery.c  -lcurl
+$ make
+
 ```
 
-### Usage
+or
+
+```
+$ gcc -Wall -o FusekiQuery  FusekiQuery.c  -lcurl
+
+$ gcc -Wall -o FusekiUpdate  FusekiUpdate.c  -lcurl
+```
+
+
+## FusekiQuery
+
 
 ```
 $ ./FusekiQuery  http://localhost:3030/ds/sparql  application/sparql-results+json   "select * where {?s ?p ?o}"
@@ -40,14 +51,6 @@ $ ./FusekiQuery  http://localhost:3030/ds/sparql  text/tab-separated-values  "se
 
 ## FusekiUpdate
 
-### Compile
-
-libcurl (https://curl.haxx.se/libcurl/) is required
-```
-$ gcc -Wall -o FusekiUpdate  FusekiUpdate.c  -lcurl
-```
-
-### Usage
 
 INSERT
 ```
