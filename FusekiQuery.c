@@ -20,7 +20,21 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <curl/curl.h>
+
+
+char* concat(const char *s1, const char *s2)
+{
+    const size_t len1 = strlen(s1);
+    const size_t len2 = strlen(s2);
+    char *result = malloc(len1+len2+1);//+1 for the zero-terminator
+    //in real code you would check for errors in malloc here
+    memcpy(result, s1, len1);
+    memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
+    return result;
+}
+
 
 int main(int argc, char **argv)
 {
@@ -32,11 +46,6 @@ int main(int argc, char **argv)
     char *url = argv[1];
     char *headerAccept = argv[2];
     char *sparql = argv[3];
-
-    //printf("arg url = %s\n", url);
-    //printf("arg headerAccept = %s\n", headerAccept);
-    //printf("arg sparql = %s\n", sparql);
-
 
     CURL *curl;
     CURLcode res;
@@ -51,10 +60,7 @@ int main(int argc, char **argv)
 
         struct curl_slist *headers = NULL;
 
-        char httpHeaderAccept[2000];
-        strcat (httpHeaderAccept, "Accept: ");
-        strcat (httpHeaderAccept, headerAccept);
-
+        char* httpHeaderAccept = concat("Accept: ", headerAccept);
         headers = curl_slist_append(headers, httpHeaderAccept);
         headers = curl_slist_append(headers, "Content-Type: application/sparql-query");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
