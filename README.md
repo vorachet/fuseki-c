@@ -1,6 +1,6 @@
 # 9KB SPARQL Query/Insert/Update C client for Jena Fuseki & Wikidata.org based on libcurl
 
-"What makes you happy SPARQL user?   Beleive me, theese mall C programs are the answer"
+"SPARQL user! What makes you happy?   Beleive me, these small programs are the answer"
 
 Very small fast C client programs for Jena Fuseki & Wikidata.org
 
