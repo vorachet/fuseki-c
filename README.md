@@ -23,9 +23,18 @@ CSV  Accept: text/csv  (as specified by https://www.w3.org/TR/sparql11-results-c
 If you want to run fuseki, the following docker is recommended (https://docs.docker.com/engine/installation/)
 
 ```
+
+CMD Template:
 $ docker run -d --name fuseki -p 3030:3030 -v {FusekiDataDirectoryOnHost}:/fuseki -e ADMIN_PASSWORD={AdminPassword}
 
+CMD Example :
+$ docker run -d --name fuseki -p 3030:3030 -v ~/fuseki_data:/fuseki -e ADMIN_PASSWORD=mypassword
+
 ```
+
+Access Fuseki at http://localhost:3030
+
+Your Fuseki data will be stored at  ~/fuseki_data
 
 
 ## Compile
