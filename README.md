@@ -19,8 +19,8 @@ libcurl is required
 gcc -Wall -o FusekiQuery  FusekiQuery.c  -lcurl
 ```
 
-### Run
-
+### Usage
+```
 ./FusekiQuery  http://localhost:3030/ds/sparql  application/sparql-results+json   "select * where {?s ?p ?o}"
 ./FusekiQuery  http://localhost:3030/ds/sparql  application/xml  "select * where {?s ?p ?o}"
 ./FusekiQuery  http://localhost:3030/ds/sparql  text/csv  "select * where {?s ?p ?o}"
