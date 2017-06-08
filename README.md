@@ -20,9 +20,9 @@ CSV  Accept: text/csv  (as specified by https://www.w3.org/TR/sparql11-results-c
 
 ## Running Fuseki
 
-```
 If you want to run fuseki, the following docker is recommended (https://docs.docker.com/engine/installation/)
 
+```
 $ docker run -d --name fuseki -p 3030:3030 -v {FusekiDataDirectoryOnHost}:/fuseki -e ADMIN_PASSWORD={AdminPassword}
 
 ```
