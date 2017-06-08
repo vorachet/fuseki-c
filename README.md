@@ -43,6 +43,8 @@ or
 $ gcc -Wall -o FusekiQuery  FusekiQuery.c  -lcurl
 
 $ gcc -Wall -o FusekiUpdate  FusekiUpdate.c  -lcurl
+
+$ gcc -Wall -o WikiDataDotOrgQuery  WikiDataDotOrgQuery.c  -lcurl
 ```
 
 
