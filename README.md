@@ -1,4 +1,4 @@
-# 9KB Utility C programs for Jena Fuseki
+# 9KB SPARQL Query/Insert/Update C client for Jena Fuseki
 Very small fast C client programs for Jena Fuseki
 
 See how Fuseki-c fast
