@@ -4,7 +4,7 @@ CFLAGS  = -Wall
 
 LIBS = -lcurl
 
-all: FusekiQuery FusekiUpdate
+all: FusekiQuery FusekiUpdate WikiDataDotOrgQuery
 
 FusekiQuery: FusekiQuery.c
 	$(CC) $(CFLAGS) -o FusekiQuery FusekiQuery.c $(LIBS)
@@ -12,5 +12,8 @@ FusekiQuery: FusekiQuery.c
 FusekiUpdate: FusekiUpdate.c
 	$(CC) $(CFLAGS) -o FusekiUpdate FusekiUpdate.c $(LIBS)
 
+WikiDataDotOrgQuery: WikiDataDotOrgQuery.c
+	$(CC) $(CFLAGS) -o WikiDataDotOrgQuery WikiDataDotOrgQuery.c $(LIBS)
+
 clean:
-	$(RM) FusekiQuery FusekiUpdate
+	$(RM) FusekiQuery FusekiUpdate WikiDataDotOrgQuery

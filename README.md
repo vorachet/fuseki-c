@@ -1,5 +1,6 @@
-# 9KB SPARQL Query/Insert/Update C client for Jena Fuseki based on libcurl
-Very small fast C client programs for Jena Fuseki
+# 9KB SPARQL Query/Insert/Update C client for Jena Fuseki & Wikidata.org based on libcurl
+
+Very small fast C client programs for Jena Fuseki & Wikidata.org
 
 See how Fuseki-c fast
 
@@ -66,4 +67,17 @@ $ ./FusekiUpdate http://localhost:3030/ds/update "insert data {<http://example.c
 DELETE
 ```
 $ ./FusekiUpdate http://localhost:3030/ds/update "delete data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}"
+```
+
+
+## www.wikidata.org client
+
+see https://www.wikidata.org/wiki/Wikidata:Main_Page
+
+```
+$ ./WikiDataDotOrgQuery application/sparql-results+json "select * where {?s ?p ?o} limit 100"
+$ ./WikiDataDotOrgQuery application/sparql-results+xml "select * where {?s ?p ?o} limit 100"
+$ ./WikiDataDotOrgQuery text/csv "select * where {?s ?p ?o} limit 100"
+$ ./WikiDataDotOrgQuery text/tab-separated-values "select * where {?s ?p ?o} limit 100"
+$ ./WikiDataDotOrgQuery application/sparql-results+json "SELECT ?item ?itemLabel WHERE { ?item wdt:P31 wd:Q146 . SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\" }}"
 ```

@@ -7,10 +7,6 @@
 
 // Compile: gcc -Wall -o FusekiUpdate  FusekiUpdate.c  -lcurl
 
-// Usage:
-//   ./FusekiUpdate http://localhost:3030/ds/update \"insert data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}
-//   ./FusekiUpdate http://localhost:3030/ds/update \"delete data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}
-
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>
@@ -18,8 +14,9 @@
 int main(int argc, char **argv)
 {
     if (argc != 3) {
-        printf("usage: ./FusekiUpdate http://localhost:3030/ds/update \"insert data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}\"\n");
-        printf("usage: ./FusekiUpdate http://localhost:3030/ds/update \"delete data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}\"\n");
+        printf("usage \n");
+        printf("  ./FusekiUpdate http://localhost:3030/ds/update \"insert data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}\"\n");
+        printf("  ./FusekiUpdate http://localhost:3030/ds/update \"delete data {<http://example.com/res/vorachet> <http://example.com/vocab#livesin> <http://example.com/res/Thailand>}\"\n");
         return -1;
     }
 
