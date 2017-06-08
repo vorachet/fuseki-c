@@ -1,4 +1,4 @@
-# fuseki-c
+# 9KB Utility C programs for Jena Fuseki
 Very small fast C client programs for Jena Fuseki
 
 See how Fuseki-c fast
