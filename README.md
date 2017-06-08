@@ -1,6 +1,13 @@
 # fuseki-c
 Very small fast C client programs for Jena Fuseki
 
+See how Fuseki-c fast
+
+The animated gif shows performance of fuseki-c. The task is to select all 26,965 triples from Fuseki server
+
+![Logo](https://github.com/vorachet/fuseki-c/raw/master/images/screenshot.gif)
+
+
 ## References
 
 ```
