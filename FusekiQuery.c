@@ -13,10 +13,10 @@
 // Compile: gcc -Wall -o FusekiQuery  FusekiQuery.c  -lcurl
 
 // Usage:
-//   FusekiQuery  http://localhost:3030/ds/sparql  application/sparql-results+json   "select * where {?s ?p ?o}"
-//   FusekiQuery  http://localhost:3030/ds/sparql  application/xml  "select * where {?s ?p ?o}"
-//   FusekiQuery  http://localhost:3030/ds/sparql  text/csv  "select * where {?s ?p ?o}"
-//   FusekiQuery  http://localhost:3030/ds/sparql  text/tab-separated-values  "select * where {?s ?p ?o}"
+//   ./FusekiQuery  http://localhost:3030/ds/sparql  application/sparql-results+json   "select * where {?s ?p ?o}"
+//   ./FusekiQuery  http://localhost:3030/ds/sparql  application/xml  "select * where {?s ?p ?o}"
+//   ./FusekiQuery  http://localhost:3030/ds/sparql  text/csv  "select * where {?s ?p ?o}"
+//   ./FusekiQuery  http://localhost:3030/ds/sparql  text/tab-separated-values  "select * where {?s ?p ?o}"
 
 #include <stdio.h>
 #include <string.h>
@@ -33,9 +33,9 @@ int main(int argc, char **argv)
     char *headerAccept = argv[2];
     char *sparql = argv[3];
 
-    printf("arg url = %s\n", url);
-    printf("arg headerAccept = %s\n", headerAccept);
-    printf("arg sparql = %s\n", sparql);
+    //printf("arg url = %s\n", url);
+    //printf("arg headerAccept = %s\n", headerAccept);
+    //printf("arg sparql = %s\n", sparql);
 
     CURL *curl;
     CURLcode res;
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
         char httpHeaderAccept[2000];
         strcat (httpHeaderAccept, "Accept: ");
         strcat (httpHeaderAccept, headerAccept);
-        printf("httpHeaderAccept = %s\n", httpHeaderAccept);
+        //printf("httpHeaderAccept = %s\n", httpHeaderAccept);
 
         chunk = curl_slist_append(chunk, httpHeaderAccept);
         chunk = curl_slist_append(chunk, "ContentType: application/sparql-query");
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
         char queryParam[2000];
         strcat (queryParam, "query=");
         strcat (queryParam, sparql);
-        printf("queryParam = %s\n", queryParam);
+        //printf("queryParam = %s\n", queryParam);
 
         res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, queryParam);
